@@ -12,7 +12,7 @@
     - [Withdraw](#withdraw)
     - [Transfer](#transfer)
   - [Smart Contract Section :hammer\_and\_wrench:](#smart-contract-section-hammer_and_wrench)
-    - [Coding the smart contract :writing\_hand:](#coding-the-smart-contract-writing_hand)
+    - [Coding the Smart Contract :writing\_hand:](#coding-the-smart-contract-writing_hand)
     - [Deploy Smart Contract :arrow\_up:](#deploy-smart-contract-arrow_up)
   - [UI Section :desktop\_computer:](#ui-section-desktop_computer)
   - [Conclusion :end:](#conclusion-end)
@@ -108,7 +108,7 @@ From what you have seen soo far, I bet you can't wait to build this dapp on your
 ## Smart Contract Section :hammer_and_wrench: 
 This is the section where we will write the smart contract for the dapp you just tested above. We will write the smart contract using Solidity on the Remix IDE. Inside this same section, we will also deploy the contract to the blockchain using the UI provided by Remix for us.
 
-### Coding the smart contract :writing_hand: 
+### Coding the Smart Contract :writing_hand: 
 Head on to https://remix.ethereum.org to open Remix right from your browser. You can use either Brave, Chrome, Firefox, etc whichever one you are more comfortable with.
 
 Create a new file with the name `Bank.sol` and open the file to start writing your Solidity code inside it.
@@ -271,18 +271,22 @@ Next line, we created a modifier and called the modifier `validAccount`Modifier 
 
 Lastly, we created a mapping to store all accounts created inside the contract. The `accounts` mapping maps an address to an `Account` which contains the account details. All created accounts can be accessed by calling the `accounts` function. At the bottom, we created a variable to keep track of the account IDs. We started counting from 1 as invalid accounts will have an ID of `0`.
 
-```sol
-        // create new account
-        function createAccount(string calldata username) external {
-            require(bytes(username).length > 0, "invalid username");
-            require(accounts[msg.sender].accountId == 0, "existing account detected");
-            accounts[msg.sender] = Account(accountIds, username, 0, 0, 0);
-            accountIds++;
-            emit CreateAccount(msg.sender);
-        }
-```
+
+We will now define the **functions** of our smart contract:
 
 - The first function in the contract is the _createAccount_ function. It is the one that gets called when new users into the dapp want to create an account. The username entered is first checked to be valid. The account is then checked to make sure we are not overwriting an existing account. The account is added to the contract, `accountIds` is incremented by one and the `CreateAccount` event is then emitted.
+
+    ```sol
+            // create new account
+            function createAccount(string calldata username) external {
+                require(bytes(username).length > 0, "invalid username");
+                require(accounts[msg.sender].accountId == 0, "existing account detected");
+                accounts[msg.sender] = Account(accountIds, username, 0, 0, 0);
+                accountIds++;
+                emit CreateAccount(msg.sender);
+            }
+    ```
+- The second function is the _deposit_ function. It is the one that gets called when you want to deposit into your bank account. The function uses the `validAccount()` modifier to first check if the account is valid before continuing. Lastly, it adds the amount sent by the user to their account balance and updates the `lastDeposit` variable, then emits the `Deposit` event.
 
     ```sol
         // deposit into existing account
@@ -295,7 +299,7 @@ Lastly, we created a mapping to store all accounts created inside the contract. 
             emit Deposit(msg.sender, amount);
         }
     ```
-- The second function is the _deposit_ function. It is the one that gets called when you want to deposit into your bank account. The function uses the `validAccount()` modifier to first check if the account is valid before continuing. Lastly, it adds the amount sent by the user to their account balance and updates the `lastDeposit` variable, then emits the `Deposit` event.
+- The third function is the _withdraw_ which withdraws some or all of the amount in your bank account. It also has the `validAccount()` modifier. It carries out some checks before sending the amount to your wallet address from your bank account. Finally, it emits the `Withdraw` event.
 
     ```sol
         // withdraw from existing account
@@ -313,7 +317,7 @@ Lastly, we created a mapping to store all accounts created inside the contract. 
         }
     ```
 
-- The third function is the _withdraw_ which withdraws some or all of the amount in your bank account. It also has the `validAccount()` modifier. It carries out some checks before sending the amount to your wallet address from your bank account. Finally, it emits the `Withdraw` event.
+- Fourth function - _checkBalance_, will return the account balance of whoever called it.
 
     ```sol
         // check balance
@@ -323,7 +327,7 @@ Lastly, we created a mapping to store all accounts created inside the contract. 
             return balance;
         }
     ```
-- Fourth function - _checkBalance_, will return the account balance of whoever called it.
+- The _transfer_ function makes a transfer from your account to another registered user. Essentially, what it does is subtract that amount from your account balance and add it to the receiver's balance, and then sets the `lastDeposit` and `lastTransfer` properties of both accounts before emitting the `Transfer` event.
 
     ```sol
         // transfer to another account
@@ -346,10 +350,10 @@ Lastly, we created a mapping to store all accounts created inside the contract. 
         }
     ```
 
-- The _transfer_ function makes a transfer from your account to another registered user. Essentially, what it does is subtract that amount from your account balance and add it to the receiver's balance, and then sets the `lastDeposit` and `lastTransfer` properties of both accounts before emitting the `Transfer` event.
+- The function _accountDetails_ is a getter function that will return all the account details associated with the sender of the transaction.
 
     ```sol
-    // get account details
+        // get account details
         function accountDetails() external view returns (
             uint256, 
             string memory, 
@@ -366,8 +370,6 @@ Lastly, we created a mapping to store all accounts created inside the contract. 
             );
         }
     ```
-
-- The function _accountDetails_ is a getter function that will return all the account details associated with the sender of the transaction.
 
 ### Deploy Smart Contract :arrow_up: 
 
