@@ -1,7 +1,22 @@
-# Build a Bank Dapp with React-Celo 
+# Build a Bank Dapp With React and Celo
+
+## Table of Content
+- [Build a Bank Dapp With React and Celo](#build-a-bank-dapp-with-react-and-celo)
+  - [Table of Content](#table-of-content)
+- [Introduction :book:](#introduction-book)
+  - [Learning objectives :eyeglasses:](#learning-objectives-eyeglasses)
+  - [Tech Stack used in this tutorial :computer:](#tech-stack-used-in-this-tutorial-computer)
+  - [Prerequisites :closed\_book:](#prerequisites-closed_book)
+  - [A glance of the app :eyes:](#a-glance-of-the-app-eyes)
+- [Smart Contract Section :hammer\_and\_wrench:](#smart-contract-section-hammer_and_wrench)
+  - [Coding the smart contract :writing\_hand:](#coding-the-smart-contract-writing_hand)
+  - [Deploy smart contract :arrow\_up:](#deploy-smart-contract-arrow_up)
+- [UI Section :desktop\_computer:](#ui-section-desktop_computer)
+- [Conclusion :end:](#conclusion-end)
+- [FAQ :question:](#faq-question)
 
 # Introduction :book:
-If you were previously a Web2 developer and recently got interested in the Web3 world either because of the noise on Twitter or the never-ending meetups held by Web3 folks, or you are already a Web3 hacker, whichever categories you call into, this tutorial is for you. We want to build an amazing project using react-celo, a package provided by the great celo developers team, write the smart contract with solidity, then deploy it to the Celo blockchain. Grab a cup of coffee because these will going to be a long ride.
+If you were previously a Web2 developer and recently got interested in the Web3 world either because of the noise on Twitter or the never-ending meetups held by Web3 folks, or you are already a Web3 hacker, whichever categories you call into, this tutorial is for you. We want to build an amazing project using `react-celo`, a package provided by the great Celo developers team, write the smart contract with Solidity, then deploy it to the Celo blockchain. Grab a cup of coffee because this is going to be a long ride.
 
 
 ## Learning objectives :eyeglasses: 
