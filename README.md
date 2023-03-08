@@ -117,7 +117,7 @@ We will first show you the finished code before explaining every piece of it.
 
 Paste the code below into the file:
 
-```sol
+```solidity
 // SPDX-License-Identifier: MIT
 
 pragma solidity ^0.8.0;
@@ -223,24 +223,24 @@ contract BankContract {
 ```
 The Solidity code above is the code for our smart contract. Let us now explain every piece of the code below:
 
-```sol
+```solidity
 // SPDX-License-Identifier: MIT
 ```
 The code above is usually the first line of code that is expected to be in our Solidity file. It is called "the license specifier". It is the one that tells the compiler that we want this or that license in our Solidity code. It usually starts with a double-forward slash which is used in Solidity for single-line comments just like the pound (#) is used in Python. You can see that we use the  **MIT** license in our code. You can also use other licenses in your Solidity code. Check out https://spdx.dev to see other options of licenses that are available for your Solidity code.
 
-```sol
+```solidity
 pragma solidity ^0.8.0;
 ```
 The second line is our Solidity code file is the "version pragma of the file". It contains the version of Solidity that we want to use for our smart contract code. `pragma` means that this file should be compiled with the specific solidity version. For our code, we didn't specify one version to compile our code, we specified a range of versions from 0.8.0 but less than version 0.9.0 that the compiler can use for our code. This range was made possible by the (^) sign in front of the number.
 
-```sol
+```solidity
 contract BankContract {}
 ```
 The line above is responsible for creating our contract. Solidity is similar to languages like Java and C++ which is why we are using `contract` as opposed to using `class` as in languages like Java or C++. The name of our contract is `BankContract`.
 
 Next, add the following code to the `BankContract` body:
 
-```sol
+```solidity
   struct Account {
         uint256 accountId;
         string accountUsername;
@@ -276,7 +276,7 @@ We will now define the **functions** of our smart contract:
 
 - The first function in the contract is the _createAccount_ function. It is the one that gets called when new users into the dapp want to create an account. The username entered is first checked to be valid. The account is then checked to make sure we are not overwriting an existing account. The account is added to the contract, `accountIds` is incremented by one and the `CreateAccount` event is then emitted.
 
-    ```sol
+    ```solidity
             // create new account
             function createAccount(string calldata username) external {
                 require(bytes(username).length > 0, "invalid username");
@@ -288,7 +288,7 @@ We will now define the **functions** of our smart contract:
     ```
 - The second function is the _deposit_ function. It is the one that gets called when you want to deposit into your bank account. The function uses the `validAccount()` modifier to first check if the account is valid before continuing. Lastly, it adds the amount sent by the user to their account balance and updates the `lastDeposit` variable, then emits the `Deposit` event.
 
-    ```sol
+    ```solidity
         // deposit into existing account
         function deposit() external payable validAccount(msg.sender) {
             Account storage account = accounts[msg.sender];
@@ -301,7 +301,7 @@ We will now define the **functions** of our smart contract:
     ```
 - The third function is the _withdraw_ which withdraws some or all of the amount in your bank account. It also has the `validAccount()` modifier. It carries out some checks before sending the amount to your wallet address from your bank account. Finally, it emits the `Withdraw` event.
 
-    ```sol
+    ```solidity
         // withdraw from existing account
         function withdraw(uint256 amount) external payable validAccount(msg.sender) {
             Account storage account = accounts[msg.sender];
@@ -319,7 +319,7 @@ We will now define the **functions** of our smart contract:
 
 - Fourth function - _checkBalance_, will return the account balance of whoever called it.
 
-    ```sol
+    ```solidity
         // check balance
         function checkBalance(address account) public view validAccount(msg.sender) returns (uint256) {
             Account memory details = accounts[account];
@@ -329,7 +329,7 @@ We will now define the **functions** of our smart contract:
     ```
 - The _transfer_ function makes a transfer from your account to another registered user. Essentially, what it does is subtract that amount from your account balance and add it to the receiver's balance, and then sets the `lastDeposit` and `lastTransfer` properties of both accounts before emitting the `Transfer` event.
 
-    ```sol
+    ```solidity
         // transfer to another account
         function transfer(address to, uint256 amount) external payable validAccount(to) {
             require(amount > 0, "invalid amount");
@@ -352,7 +352,7 @@ We will now define the **functions** of our smart contract:
 
 - The function _accountDetails_ is a getter function that will return all the account details associated with the sender of the transaction.
 
-    ```sol
+    ```solidity
         // get account details
         function accountDetails() external view returns (
             uint256, 
