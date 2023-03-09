@@ -1,7 +1,24 @@
 # Build a Bank Dapp With React-Celo 
 
-# Introduction :book:
+## Introduction :book:
 If you were previously a Web2 developer and recently got interested in the Web3 world either because of the noise on Twitter or the never-ending meetups held by Web3 folks, or you are already a Web3 hacker, whichever categories you call into, this tutorial is for you. We want to build an amazing project using **react-celo**, a package provided by the great Celo developers team, also write the smart contract with solidity, then deploy it to the **Celo blockchain**. Grab a cup of coffee because these will be a long and interesting ride.
+
+## Table of Contents
+  * [Introduction :book:](#introduction--book-)
+  * [Table of Contents](#table-of-contents)
+  * [Learning Objectives :eyeglasses:](#learning-objectives--eyeglasses-)
+  * [Tech Stack :computer:](#tech-stack--computer-)
+  * [Prerequisites :closed_book:](#prerequisites--closed-book-)
+  * [A Glance at the App :eyes:](#a-glance-at-the-app--eyes-)
+    + [Deposit](#deposit)
+    + [Withdraw](#withdraw)
+    + [Transfer](#transfer)
+  * [Smart Contract Section :hammer_and_wrench:](#smart-contract-section--hammer-and-wrench-)
+    + [Coding the Smart Contract :writing_hand:](#coding-the-smart-contract--writing-hand-)
+    + [Deploy smart contract :arrow_up:](#deploy-smart-contract--arrow-up-)
+  * [UI Section :desktop_computer:](#ui-section--desktop-computer-)
+- [Conclusion :end:](#conclusion--end-)
+- [FAQ :question:](#faq--question-)
 
 
 ## Learning Objectives :eyeglasses: 
@@ -429,7 +446,7 @@ This is what the page will look like
 
 ![page-view-on-first-load-with-url-bar-included](https://i.imgur.com/92cEHmq.png)
 
-# Conclusion :end: 
+## Conclusion :end: 
 I hope you have learned how to use react-celo to connect your React application to the Celo blockchain.  I also hope you have leant how to write solidity smart contracts and deploy them to the Celo blockchain using Remix. This is just the beginning of this journey as we might build something larger using newer and shiny technologies. 
 
 Try out the version of the project I hosted on [Github Pages](https://Evangelistsb.github.io/bank-app-web3)
@@ -439,7 +456,7 @@ Check out the project's source code here on [Github](https://github.com/Evangeli
 Drop a comment for what you think we should build next time :point_down: 
 
 
-# FAQ :question: 
+## FAQ :question: 
 
 - **_What is Celo Blockchain?_** Celo is the carbon-negative, mobile-first, EVM-compatible blockchain ecosystem leading a thriving new digital economy for all
 - **_What is Remix IDE?_** Remix, more commonly known as Remix IDE, is an open-source Ethereum IDE you can use to write, compile and debug Solidity code.
